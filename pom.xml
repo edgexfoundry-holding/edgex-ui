@@ -22,11 +22,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.edgexfoundry</groupId>
-	<artifactId>simple-local-gateway-console</artifactId>
+	<artifactId>edgex-ui</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>simple-local-gateway-console</name>
+	<name>edgex-ui</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
