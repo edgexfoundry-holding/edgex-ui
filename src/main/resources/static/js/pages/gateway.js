@@ -26,7 +26,7 @@ var gatewayManagementModule = {
 //		gatewayManagementModule.gatewayDataCache = gatewayListDataTest;
 //		gatewayManagementModule.selectedRow = Object.assign({},gatewayListDataTest[0]);
 		$.ajax({
-			url: '/core-gateway/api/v1/gateway',
+			url: '/api/v1/gateway',
 			type: 'GET',
 			success: function(data){
 				 
@@ -76,7 +76,7 @@ var gatewayManagementModule = {
 			});
 			var param = {"hostIP":gatewayManagementModule.selectedRow.address};
 			$.ajax({
-				url: '/core-gateway/api/v1/proxy/host',
+				url: '/api/v1/gateway/proxy',
 				type: 'POST',
 				contentType:'application/json',
 				data:JSON.stringify(param),
@@ -96,7 +96,7 @@ var gatewayManagementModuleBtnGroup = {
 	deleteOne:function(){
 		var ro = gatewayManagementModule.selectedRow;
 		$.ajax({
-			url:'/core-gateway/api/v1/gateway/' + gatewayManagementModule.selectedRow['id'] + '',
+			url:'/api/v1/gateway/' + gatewayManagementModule.selectedRow['id'] + '',
 			type:'DELETE',
 			success:function(){
 				gatewayManagementModule.selectedRow = null;
@@ -115,7 +115,7 @@ var gatewayManagementModuleBtnGroup = {
 		gateway_new["address"] = $("#address").val();
 		
 		$.ajax({
-			url:'/core-gateway/api/v1/gateway',
+			url:'/api/v1/gateway',
 			type:'POST',
 			data:JSON.stringify(gateway_new),
 			contentType:'application/json',

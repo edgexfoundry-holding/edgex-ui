@@ -33,13 +33,13 @@ import edgexfoundry.domain.GatewayInfo;
 import edgexfoundry.repository.GatewayJpaRepository;
 
 @RestController
-@RequestMapping(value="/core-gateway/api/v1")
+@RequestMapping(value="/api/v1/gateway")
 public class ZuulDynamicProxyController {
 
 		@Autowired
 		GatewayJpaRepository gatewayInfoRepos;
 	
-		@RequestMapping(value="/proxy/host",method=RequestMethod.POST)
+		@RequestMapping(value="/proxy",method=RequestMethod.POST)
 		public String dynamicConfigProxy(@RequestBody Map<String,String> originHostIP,HttpServletRequest req) {
 			synchronized (this.getClass()) {
 				ZuulDynamicProxyCache.getProxymapping().put(req.getSession().getId(), originHostIP.get("hostIP"));
@@ -47,18 +47,18 @@ public class ZuulDynamicProxyController {
 			return "success";
 		}
 		
-		@RequestMapping(value="/gateway",method=RequestMethod.GET)
+		@RequestMapping(method=RequestMethod.GET)
 		public List<GatewayInfo> findAll() {
 			return gatewayInfoRepos.findAll();
 		}
 		
-		@RequestMapping(value="/gateway",method=RequestMethod.POST)
+		@RequestMapping(method=RequestMethod.POST)
 		public String save(@RequestBody GatewayInfo gatewayInfo) {
 			gatewayInfoRepos.save(gatewayInfo);
 			return "success";
 		}
 		
-		@RequestMapping(value="/gateway/{id}",method=RequestMethod.DELETE)
+		@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
 		public String delete(@PathVariable String id) {
 			gatewayInfoRepos.delete(id);
 			return "success";

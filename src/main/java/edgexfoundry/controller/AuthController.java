@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 import edgexfoundry.domain.User;
 
 @RestController
+@RequestMapping("/api/v1/auth")
 public class AuthController {
 	
 	@Value(value = "${USER_NAME}")
@@ -37,7 +38,7 @@ public class AuthController {
 	@Value("${USER_PWD}")
 	private String userPwd;
 	
-	@RequestMapping(value="/auth/login",method=RequestMethod.POST)
+	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public void login(@RequestBody User user,HttpServletRequest req,HttpServletResponse resp) throws Exception{
 		if(user.getName().equals(userName) && user.getPassword().equals(userPwd)) {
 			req.getSession().setAttribute("user", user);
@@ -46,7 +47,7 @@ public class AuthController {
 		return ;
 	}
 	
-	@RequestMapping(value="/auth/logout",method=RequestMethod.GET)
+	@RequestMapping(value="/logout",method=RequestMethod.GET)
 	public void logout(HttpServletRequest req,HttpServletResponse resp) throws Exception{
 		HttpSession session = req.getSession();
 		session.invalidate();

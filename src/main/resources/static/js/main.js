@@ -44,7 +44,7 @@ $(document).ready(function(){
 	//logout control
 	$(".headbar li.logout").on("click",function(){
 		$.ajax({
-			url:'/auth/logout?ran='+Math.random(),
+			url:'/api/v1/auth/logout?ran='+Math.random(),
 			type:'GET',
 			success:function(){
 				window.location.href='/?ran='+Math.random();
