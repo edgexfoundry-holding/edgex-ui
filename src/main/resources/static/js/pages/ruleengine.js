@@ -197,16 +197,22 @@ var ruleEngineModuleBtnGroup = {
 			
 			var action_device_name = $("#action_device_list input[name='action_device_name']").val();
 			var command = $("#rule-add-new  select[name='commandName']").val();
-			var body = '{\\\"';
+			var body="";
 			var param_inputs = $("table.action_device_list td").last().find('input');
-			$.each(param_inputs,function(i,input){
-				body += $(input).prop('name')+'\\\":\\\"' + $(input).val() + '\\\"';
-				if(i == (param_inputs.length - 1)){
-					body += '}';
-					return false;
-				}
-				body += ',\\\"';
-			});
+			if(!param_inputs){
+				body = '{\\\"';
+				$.each(param_inputs,function(i,input){
+					body += $(input).prop('name')+'\\\":\\\"' + $(input).val() + '\\\"';
+					if(i == (param_inputs.length - 1)){
+						body += '}';
+						return false;
+					}
+					body += ',\\\"';
+				});
+			}else{
+				body="{}";
+			}
+			
 			
 			condition['device'] = condition_device_name;
 			checks.push({"parameter":parameter,
