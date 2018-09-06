@@ -166,6 +166,13 @@ var deviceModuleBtnGroup = {
 					type:'DELETE',
 					success:function(){
 						deviceModule.loadDeviceData();
+						$.ajax({
+							url: '/core-metadata/api/v1/addressable/id/' + deviceModule.selectedRow.addressable.id + '',
+							type: 'DELETE',
+							error: function(err){
+								alert("delete device address failed !")
+							}
+						});
 					}
 				});
 			}
